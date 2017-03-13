@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BBD75A31E6EC11300B178E2 /* GraphObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD75A21E6EC11300B178E2 /* GraphObj.m */; };
+		2BBD75A61E6EC31A00B178E2 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD75A51E6EC31A00B178E2 /* Graph.m */; };
+		2BBD75A91E6F172B00B178E2 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD75A81E6F172B00B178E2 /* NetworkManager.m */; };
+		2BBD75AD1E6F182400B178E2 /* Constructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD75AC1E6F182400B178E2 /* Constructor.m */; };
 		2BC1EBC51E6EBFC600DC1D47 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1EBC41E6EBFC600DC1D47 /* main.m */; };
 		2BC1EBC81E6EBFC600DC1D47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1EBC71E6EBFC600DC1D47 /* AppDelegate.m */; };
 		2BC1EBCB1E6EBFC600DC1D47 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1EBCA1E6EBFC600DC1D47 /* ViewController.m */; };
@@ -14,9 +18,19 @@
 		2BC1EBD11E6EBFC600DC1D47 /* PageRank.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2BC1EBCF1E6EBFC600DC1D47 /* PageRank.xcdatamodeld */; };
 		2BC1EBD31E6EBFC600DC1D47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC1EBD21E6EBFC600DC1D47 /* Assets.xcassets */; };
 		2BC1EBD61E6EBFC600DC1D47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC1EBD41E6EBFC600DC1D47 /* LaunchScreen.storyboard */; };
+		75AFC8AFBAC58A2A8F6AFB90 /* libPods-PageRank.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF1D441FD25C2074AEEE6990 /* libPods-PageRank.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2BBD75A11E6EC11300B178E2 /* GraphObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphObj.h; sourceTree = "<group>"; };
+		2BBD75A21E6EC11300B178E2 /* GraphObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphObj.m; sourceTree = "<group>"; };
+		2BBD75A41E6EC31A00B178E2 /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
+		2BBD75A51E6EC31A00B178E2 /* Graph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Graph.m; sourceTree = "<group>"; };
+		2BBD75A71E6F172B00B178E2 /* NetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkManager.h; sourceTree = "<group>"; };
+		2BBD75A81E6F172B00B178E2 /* NetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkManager.m; sourceTree = "<group>"; };
+		2BBD75AA1E6F178300B178E2 /* Constant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constant.h; sourceTree = "<group>"; };
+		2BBD75AB1E6F182400B178E2 /* Constructor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constructor.h; sourceTree = "<group>"; };
+		2BBD75AC1E6F182400B178E2 /* Constructor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constructor.m; sourceTree = "<group>"; };
 		2BC1EBC01E6EBFC600DC1D47 /* PageRank.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PageRank.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BC1EBC41E6EBFC600DC1D47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2BC1EBC61E6EBFC600DC1D47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +42,9 @@
 		2BC1EBD21E6EBFC600DC1D47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BC1EBD51E6EBFC600DC1D47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BC1EBD71E6EBFC600DC1D47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B623DCEC4A2579058BF8D2AD /* Pods-PageRank.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageRank.release.xcconfig"; path = "Pods/Target Support Files/Pods-PageRank/Pods-PageRank.release.xcconfig"; sourceTree = "<group>"; };
+		B76DA72986807EBBB23D9532 /* Pods-PageRank.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PageRank.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PageRank/Pods-PageRank.debug.xcconfig"; sourceTree = "<group>"; };
+		FF1D441FD25C2074AEEE6990 /* libPods-PageRank.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PageRank.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +52,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75AFC8AFBAC58A2A8F6AFB90 /* libPods-PageRank.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +64,8 @@
 			children = (
 				2BC1EBC21E6EBFC600DC1D47 /* PageRank */,
 				2BC1EBC11E6EBFC600DC1D47 /* Products */,
+				B18B7986DFCB6509B486924E /* Pods */,
+				CF9511991D36A799147360EA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,6 +80,15 @@
 		2BC1EBC21E6EBFC600DC1D47 /* PageRank */ = {
 			isa = PBXGroup;
 			children = (
+				2BBD75AA1E6F178300B178E2 /* Constant.h */,
+				2BBD75AB1E6F182400B178E2 /* Constructor.h */,
+				2BBD75AC1E6F182400B178E2 /* Constructor.m */,
+				2BBD75A71E6F172B00B178E2 /* NetworkManager.h */,
+				2BBD75A81E6F172B00B178E2 /* NetworkManager.m */,
+				2BBD75A41E6EC31A00B178E2 /* Graph.h */,
+				2BBD75A51E6EC31A00B178E2 /* Graph.m */,
+				2BBD75A11E6EC11300B178E2 /* GraphObj.h */,
+				2BBD75A21E6EC11300B178E2 /* GraphObj.m */,
 				2BC1EBC61E6EBFC600DC1D47 /* AppDelegate.h */,
 				2BC1EBC71E6EBFC600DC1D47 /* AppDelegate.m */,
 				2BC1EBC91E6EBFC600DC1D47 /* ViewController.h */,
@@ -82,6 +111,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		B18B7986DFCB6509B486924E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B76DA72986807EBBB23D9532 /* Pods-PageRank.debug.xcconfig */,
+				B623DCEC4A2579058BF8D2AD /* Pods-PageRank.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		CF9511991D36A799147360EA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FF1D441FD25C2074AEEE6990 /* libPods-PageRank.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -89,9 +135,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2BC1EBDA1E6EBFC600DC1D47 /* Build configuration list for PBXNativeTarget "PageRank" */;
 			buildPhases = (
+				6AAFC97FF14FB700649658E9 /* [CP] Check Pods Manifest.lock */,
 				2BC1EBBC1E6EBFC600DC1D47 /* Sources */,
 				2BC1EBBD1E6EBFC600DC1D47 /* Frameworks */,
 				2BC1EBBE1E6EBFC600DC1D47 /* Resources */,
+				505E8CE0A2540A6CF58B7ADC /* [CP] Embed Pods Frameworks */,
+				29E496ADA941D980DE13D209 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -148,14 +197,66 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29E496ADA941D980DE13D209 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PageRank/Pods-PageRank-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		505E8CE0A2540A6CF58B7ADC /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PageRank/Pods-PageRank-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6AAFC97FF14FB700649658E9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		2BC1EBBC1E6EBFC600DC1D47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BBD75A61E6EC31A00B178E2 /* Graph.m in Sources */,
+				2BBD75A91E6F172B00B178E2 /* NetworkManager.m in Sources */,
 				2BC1EBCB1E6EBFC600DC1D47 /* ViewController.m in Sources */,
 				2BC1EBC81E6EBFC600DC1D47 /* AppDelegate.m in Sources */,
 				2BC1EBD11E6EBFC600DC1D47 /* PageRank.xcdatamodeld in Sources */,
+				2BBD75A31E6EC11300B178E2 /* GraphObj.m in Sources */,
+				2BBD75AD1E6F182400B178E2 /* Constructor.m in Sources */,
 				2BC1EBC51E6EBFC600DC1D47 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +375,7 @@
 		};
 		2BC1EBDB1E6EBFC600DC1D47 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B76DA72986807EBBB23D9532 /* Pods-PageRank.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PageRank/Info.plist;
@@ -285,6 +387,7 @@
 		};
 		2BC1EBDC1E6EBFC600DC1D47 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B623DCEC4A2579058BF8D2AD /* Pods-PageRank.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = PageRank/Info.plist;
@@ -313,6 +416,7 @@
 				2BC1EBDC1E6EBFC600DC1D47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

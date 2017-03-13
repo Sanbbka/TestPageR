@@ -8,6 +8,9 @@
 
 #import "ViewController.h"
 
+#import "NetworkManager.h"
+#import "Constructor.h"
+
 @interface ViewController ()
 
 @end
@@ -17,6 +20,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    Constructor *constr = [Constructor new];
+    
+    [constr fillGraph];
+    
 }
 
 
