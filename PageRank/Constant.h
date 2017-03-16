@@ -9,6 +9,6 @@
 #ifndef Constant_h
 #define Constant_h
 
-static NSString *baseURL = @"https://medium.com/";
-
+static NSString *baseURL = @"https://github.com/";
+static NSInteger countMax = 100;
 #endif /* Constant_h */

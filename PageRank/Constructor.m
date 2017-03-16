@@ -16,8 +16,8 @@
 
 @property Graph *graph;
 
-@property NSMutableArray *execArr;
-
+@property NSMutableArray *printArr;
+@property NSInteger counter;
 @end
 
 @implementation Constructor
@@ -26,14 +26,18 @@
     
     NSMutableArray *arrColumn = [NSMutableArray new];
     
+    NSMutableArray *arrKeys = [NSMutableArray new];
+    
     for (NSString *keyF in self.graph.objDict) {
+        [arrKeys addObject:keyF];
         NSMutableArray *arrRow = [NSMutableArray new];
         for (NSString *keyS in self.graph.objDict) {
-            [arrRow addObject:[self.graph.objDict[keyF].relations containsObject:keyS]? @"1" : @"0"];
+            [arrRow addObject:[self.graph.objDict[keyS].relations containsObject:keyF]? @"1" : @"0"];
         }
         [arrColumn addObject:arrRow];
     }
-    [self prettyPrint:arrColumn];
+    
+    [self prettyPrint:arrColumn arrG:arrKeys];
     [self calPageRank];
     NSLog(@"");
 }
@@ -45,11 +49,8 @@
     
     for (NSString *key in self.graph.objDict) {
         GraphObj *obj = self.graph.objDict[key];
-        obj.rankPage = 1./N;
+        obj.rankPage = 1 / N;
     }
-    
-    NSLog(@"Number Of Vertices: %f", N);
-    NSLog(@"*************************");
     
     for (int i = 0; i < 20; i++) {
         for (NSString *key in self.graph.objDict) {
@@ -67,9 +68,9 @@
             obj.rankPage = (1 - d) / N + d*inbound;
         }
     }
-    NSLog(@"Rank of Vertices");
-    NSLog(@"*************************");
+
     
+    //
     NSMutableDictionary *dict = [NSMutableDictionary new];
     
     NSMutableArray *arr = [NSMutableArray new];
@@ -95,23 +96,29 @@
         }
     }];
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.printArr = arr;
+        self.vc.arrS = [arr copy];
+        [self.vc.tableView reloadData];
+    });
     
     
     NSLog(@"%@", dict);
     NSLog(@"");
 }
 
-- (void)prettyPrint:(NSMutableArray *)arrPrint {
+- (void)prettyPrint:(NSMutableArray *)arrPrint arrG:(NSMutableArray *)arrKeys {
     
     NSString *mainStr = @"";
+    NSInteger jj = 0;
     for (NSArray *arr in arrPrint) {
-        NSString *printStr = @"[";
+        NSString *printStr = @"";
         for (NSString *str in arr) {
-            printStr = [printStr stringByAppendingFormat:@"%@, ", str];
+            printStr = [printStr stringByAppendingFormat:@"%@", str];
         }
-        printStr = [printStr stringByAppendingString:@"]"];
-        
-        mainStr = [mainStr stringByAppendingFormat:@"%@\n", printStr];
+        printStr = [printStr stringByAppendingString:@""];
+        mainStr = [mainStr stringByAppendingFormat:@"%@ %@\n", printStr, arrKeys[jj]];
+        jj++;
     }
     
     NSLog(@"");
@@ -119,12 +126,22 @@
 
 - (void)fillGraph {
     self.graph = [Graph new];
-    self.execArr = [NSMutableArray new];
+    self.printArr = [NSMutableArray new];
+    self.counter = 0;
     
-    [self.execArr addObject:baseURL];
+//    [self.execArr addObject:baseURL];
+    [self fillWithLink:baseURL];
     
-    while (self.graph.objDict.count < 100 && self.execArr.count != 0) {
-        [self fillWithLink:self.execArr.firstObject];
+    while (1) {
+        NSString *link = [self.graph getLinkNeedDownl];
+        if (link == nil) {
+            break;
+        }
+        if ([link containsString:baseURL]) {
+            if (link) {
+                [self fillWithLink:link];
+            }
+        }
     }
     
     [self showMatrix];
@@ -132,16 +149,14 @@
 
 - (void)fillWithLink:(NSString *)mainLink {
     NSArray *arrLinks = [NetworkManager executeTask:mainLink];
-    
+    self.graph.objDict[mainLink].downlFlag = YES;
     for (NSString *strLink in arrLinks) {
-        [self.graph objKey:mainLink addRelationWithLink:strLink];
-    }
-    
-    [self.execArr removeObject:mainLink];
-    
-    if (arrLinks) {
-        [self.execArr addObjectsFromArray:arrLinks];
+        if ([strLink containsString:baseURL]) {
+            [self.graph objKey:mainLink addRelationWithLink:strLink];
+        }
     }
 }
+
+
 
 @end

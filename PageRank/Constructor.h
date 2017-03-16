@@ -7,8 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ViewController.h"
 
 @interface Constructor : NSObject
+
+@property (nonatomic, weak) ViewController *vc;
 
 - (void)fillGraph;
 

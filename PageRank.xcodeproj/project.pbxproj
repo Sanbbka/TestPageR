@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5907411E791D2000912DBF /* CustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B59073F1E791D2000912DBF /* CustomCell.m */; };
+		2B5907421E791D2000912DBF /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B5907401E791D2000912DBF /* CustomCell.xib */; };
 		2BBD75A31E6EC11300B178E2 /* GraphObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD75A21E6EC11300B178E2 /* GraphObj.m */; };
 		2BBD75A61E6EC31A00B178E2 /* Graph.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD75A51E6EC31A00B178E2 /* Graph.m */; };
 		2BBD75A91E6F172B00B178E2 /* NetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBD75A81E6F172B00B178E2 /* NetworkManager.m */; };
@@ -22,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2B59073E1E791D2000912DBF /* CustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCell.h; sourceTree = "<group>"; };
+		2B59073F1E791D2000912DBF /* CustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCell.m; sourceTree = "<group>"; };
+		2B5907401E791D2000912DBF /* CustomCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		2BBD75A11E6EC11300B178E2 /* GraphObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraphObj.h; sourceTree = "<group>"; };
 		2BBD75A21E6EC11300B178E2 /* GraphObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraphObj.m; sourceTree = "<group>"; };
 		2BBD75A41E6EC31A00B178E2 /* Graph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Graph.h; sourceTree = "<group>"; };
@@ -59,6 +64,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B5907431E791DF600912DBF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				2BBD75A41E6EC31A00B178E2 /* Graph.h */,
+				2BBD75A51E6EC31A00B178E2 /* Graph.m */,
+				2BBD75A11E6EC11300B178E2 /* GraphObj.h */,
+				2BBD75A21E6EC11300B178E2 /* GraphObj.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		2B5907441E791E0500912DBF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2BC1EBC91E6EBFC600DC1D47 /* ViewController.h */,
+				2BC1EBCA1E6EBFC600DC1D47 /* ViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		2B5907451E791E1100912DBF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2B59073E1E791D2000912DBF /* CustomCell.h */,
+				2B59073F1E791D2000912DBF /* CustomCell.m */,
+				2B5907401E791D2000912DBF /* CustomCell.xib */,
+				2BC1EBCC1E6EBFC600DC1D47 /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		2BC1EBB71E6EBFC600DC1D47 = {
 			isa = PBXGroup;
 			children = (
@@ -85,15 +121,11 @@
 				2BBD75AC1E6F182400B178E2 /* Constructor.m */,
 				2BBD75A71E6F172B00B178E2 /* NetworkManager.h */,
 				2BBD75A81E6F172B00B178E2 /* NetworkManager.m */,
-				2BBD75A41E6EC31A00B178E2 /* Graph.h */,
-				2BBD75A51E6EC31A00B178E2 /* Graph.m */,
-				2BBD75A11E6EC11300B178E2 /* GraphObj.h */,
-				2BBD75A21E6EC11300B178E2 /* GraphObj.m */,
+				2B5907431E791DF600912DBF /* Model */,
 				2BC1EBC61E6EBFC600DC1D47 /* AppDelegate.h */,
 				2BC1EBC71E6EBFC600DC1D47 /* AppDelegate.m */,
-				2BC1EBC91E6EBFC600DC1D47 /* ViewController.h */,
-				2BC1EBCA1E6EBFC600DC1D47 /* ViewController.m */,
-				2BC1EBCC1E6EBFC600DC1D47 /* Main.storyboard */,
+				2B5907441E791E0500912DBF /* Controller */,
+				2B5907451E791E1100912DBF /* View */,
 				2BC1EBD21E6EBFC600DC1D47 /* Assets.xcassets */,
 				2BC1EBD41E6EBFC600DC1D47 /* LaunchScreen.storyboard */,
 				2BC1EBD71E6EBFC600DC1D47 /* Info.plist */,
@@ -191,6 +223,7 @@
 			files = (
 				2BC1EBD61E6EBFC600DC1D47 /* LaunchScreen.storyboard in Resources */,
 				2BC1EBD31E6EBFC600DC1D47 /* Assets.xcassets in Resources */,
+				2B5907421E791D2000912DBF /* CustomCell.xib in Resources */,
 				2BC1EBCE1E6EBFC600DC1D47 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +291,7 @@
 				2BBD75A31E6EC11300B178E2 /* GraphObj.m in Sources */,
 				2BBD75AD1E6F182400B178E2 /* Constructor.m in Sources */,
 				2BC1EBC51E6EBFC600DC1D47 /* main.m in Sources */,
+				2B5907411E791D2000912DBF /* CustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

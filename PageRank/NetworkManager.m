@@ -9,29 +9,47 @@
 #import "NetworkManager.h"
 #import <HTMLReader.h>
 #import "Graph.h"
+#import "Constant.h"
 
 @implementation NetworkManager
 
 + (NSArray *)executeTask:(NSString *)urlPath {
-    
-    NSError *error = nil;
-    NSString *str = [NSString stringWithContentsOfURL:[NSURL URLWithString:urlPath] encoding:NSUTF8StringEncoding error:&error];
-    
-    NSMutableArray *arrLinks = [NSMutableArray new];
-    
-    if (error == nil && str) {
-        HTMLDocument *document = [HTMLDocument documentWithString:str];
-        NSArray *arr = [document nodesMatchingSelector:@"a"];
+    NSArray *arr = nil;
+    @autoreleasepool {
         
-        for (HTMLElement *elem in arr) {
-            NSString *href = [[elem attributes] objectForKey:@"href"];
-            if (href) {
-                [arrLinks addObject:href];
+        NSError *error = nil;
+        NSString *str = [NSString stringWithContentsOfURL:[NSURL URLWithString:[urlPath copy]] encoding:NSUTF8StringEncoding error:&error];
+        
+        NSMutableArray *arrLinks = [NSMutableArray new];
+        
+        if (error == nil && str) {
+            {
+                HTMLDocument *document = [HTMLDocument documentWithString:str];
+                NSArray *arr = [document nodesMatchingSelector:@"a"];
+                
+                for (HTMLElement *elem in arr) {
+                    NSString *href = [[elem attributes] objectForKey:@"href"];
+                    if (href && [href containsString:baseURL]) {
+                        [arrLinks addObject:[href copy]];
+                    }
+                }
             }
+//            {
+//                HTMLDocument *document = [HTMLDocument documentWithString:str];
+//                NSArray *arr = [document nodesMatchingSelector:@"link"];
+//                
+//                for (HTMLElement *elem in arr) {
+//                    NSString *href = [[elem attributes] objectForKey:@"href"];
+//                    if (href && [href containsString:baseURL]) {
+//                        [arrLinks addObject:[href copy]];
+//                    }
+//                }
+//            }
         }
+        arr = [arrLinks copy];
     }
-        
-    return arrLinks;
+    
+    return arr;
 }
 
 @end

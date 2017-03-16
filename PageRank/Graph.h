@@ -15,5 +15,6 @@
 
 - (void)objKey:(NSString *)firstLink addRelationWithLink:(NSString *)secondLink;
 - (GraphObj *)getObjectForLink:(NSString *)link;
+- (NSString *)getLinkNeedDownl;
 
 @end

@@ -13,7 +13,7 @@
 @property NSString *link;
 @property NSMutableSet <NSString *> *relations;
 @property (nonatomic, assign) double rankPage;
-
+@property BOOL downlFlag;
 
 - (instancetype)initWithLink:(NSString *)link;
 - (void)addRelation:(GraphObj *)graph;
