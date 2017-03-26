@@ -23,7 +23,6 @@
 @implementation Constructor
 
 - (void)showMatrix {
-    
     NSMutableArray *arrColumn = [NSMutableArray new];
     
     NSMutableArray *arrKeys = [NSMutableArray new];
@@ -37,9 +36,112 @@
         [arrColumn addObject:arrRow];
     }
     
-    [self prettyPrint:arrColumn arrG:arrKeys];
-    [self calPageRank];
+
+    
+    [self nonParallelIterationPR];
+    [self nonParallelPageRank];
+    [self parallelEXPageRank];
+    
+    [self reloadData];
     NSLog(@"");
+}
+
+
+#pragma mark - FUNCs PR
+
+- (void)nonParallelIterationPR {
+    [self startPageRank];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    [self calPageRank];
+    NSTimeInterval interval2 = [[NSDate date] timeIntervalSince1970];
+    NSLog(@"NONE PARALLEL ITERATION = %f", interval2 - interval);
+}
+
+- (void)nonParallelPageRank {
+    [self startPageRank];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    [self calExPageRank];
+    NSTimeInterval interval2 = [[NSDate date] timeIntervalSince1970];
+    NSLog(@"NONE PARALLEL = %f", interval2 - interval);
+}
+
+- (void)parallelEXPageRank {
+    [self startPageRank];
+    NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+    [self parallelEx];
+    NSTimeInterval interval2 = [[NSDate date] timeIntervalSince1970];
+    NSLog(@"PARALLEL EX = %f", interval2 - interval);
+}
+
+
+#pragma mark - FUNCs
+
+- (void)parallelEx {
+    NSArray *linksArr = self.graph.objDict.allKeys;
+    
+    NSInteger N = self.graph.objDict.count;
+    NSDictionary *dict = self.graph.objDict;
+    
+    for (int k = 0; k < 100; k++) {
+        dispatch_apply(N, dispatch_get_global_queue(0, 0), ^(size_t i){
+            NSString *keyMain = linksArr[i];
+            GraphObj *obj = dict[keyMain];
+            double pageRank = 0;
+            for (NSString *keyL in obj.parents) {
+                GraphObj *obj2 = dict[keyL];
+                pageRank += obj2.relations.count > 0 ? 1. / obj2.relations.count : 0 * obj2.rankPage;
+            }
+            obj.nextPageRank = pageRank;
+        });
+        [self normalizeGraph];
+    }
+}
+
+- (void)calExPageRank {
+    NSArray *linksArr = self.graph.objDict.allKeys;
+    
+    NSInteger N = self.graph.objDict.count;
+    NSDictionary *dict = self.graph.objDict;
+    
+    for (int k = 0; k < 100; k++) {
+        for (int i = 0; i < N; i++) {
+            NSString *keyMain = linksArr[i];
+            GraphObj *obj = dict[keyMain];
+            double pageRank = 0;
+            for (NSString *keyL in obj.parents) {
+                GraphObj *obj2 = dict[keyL];
+                pageRank += obj2.relations.count > 0 ? 1. / obj2.relations.count : 0 * obj2.rankPage;
+            }
+            obj.nextPageRank = pageRank;
+        }
+        [self normalizeGraph];
+    }
+}
+
+- (void)normalizeGraph {
+    for (NSString *key in self.graph.objDict) {
+        GraphObj *obj = self.graph.objDict[key];
+        obj.rankPage = obj.nextPageRank;
+    }
+}
+
+- (void)printDate {
+    [self printLine];
+//    NSLog(@"%@", [NSDate date]);
+    [self printLine];
+}
+
+- (void)printLine {
+    NSLog(@"-------------");
+}
+
+
+- (void)startPageRank {
+    [self printDate];
+    for (NSString *key in self.graph.objDict) {
+        GraphObj *obj = self.graph.objDict[key];
+        obj.rankPage = 1 / self.graph.objDict.count;
+    }
 }
 
 - (void)calPageRank {
@@ -47,30 +149,21 @@
     double d = 0.85;
     double N = self.graph.objDict.count;
     
-    for (NSString *key in self.graph.objDict) {
-        GraphObj *obj = self.graph.objDict[key];
-        obj.rankPage = 1 / N;
-    }
-    
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 100; i++) {
         for (NSString *key in self.graph.objDict) {
             GraphObj *obj = self.graph.objDict[key];
             double inbound = 0;
-            for (NSString *key in self.graph.objDict) {
+            for (NSString *key in obj.parents) {
                 GraphObj *v2 = self.graph.objDict[key];
                 double m = v2.relations.count;
-                for (NSString *e in v2.relations) {
-                    if ([e isEqualToString:obj.link]) {
-                        inbound += [self.graph getObjectForLink:e].rankPage / m;
-                    }
-                }
+                inbound += v2.rankPage / m;
             }
             obj.rankPage = (1 - d) / N + d*inbound;
         }
     }
+}
 
-    
-    //
+- (void)reloadData {
     NSMutableDictionary *dict = [NSMutableDictionary new];
     
     NSMutableArray *arr = [NSMutableArray new];
@@ -80,7 +173,7 @@
     for (NSString *key in self.graph.objDict) {
         GraphObj *obj = self.graph.objDict[key];
         [dict setObject:@(obj.rankPage) forKey:obj.link];
-        NSLog(@"%@ : %f", obj.link, obj.rankPage);
+//        NSLog(@"%@ : %f", obj.link, obj.rankPage);
         [arr addObject:@{@"link" : obj.link, @"val" : @(obj.rankPage)}];
         if (obj.rankPage > max) {
             less = obj.link;
@@ -101,10 +194,6 @@
         self.vc.arrS = [arr copy];
         [self.vc.tableView reloadData];
     });
-    
-    
-    NSLog(@"%@", dict);
-    NSLog(@"");
 }
 
 - (void)prettyPrint:(NSMutableArray *)arrPrint arrG:(NSMutableArray *)arrKeys {
@@ -150,11 +239,9 @@
 - (void)fillWithLink:(NSString *)mainLink {
     NSArray *arrLinks = [NetworkManager executeTask:mainLink];
     self.graph.objDict[mainLink].downlFlag = YES;
-    for (NSString *strLink in arrLinks) {
-        if ([strLink containsString:baseURL]) {
+    for (NSString *strLink in arrLinks)
+        if ([strLink containsString:baseURL])
             [self.graph objKey:mainLink addRelationWithLink:strLink];
-        }
-    }
 }
 
 

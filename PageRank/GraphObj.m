@@ -19,6 +19,7 @@
         self.rankPage = 0;
         self.link = link;
         self.relations = [NSMutableSet new];
+        self.parents = [NSMutableSet new];
     }
     
     return self;
@@ -26,6 +27,7 @@
 
 - (void)addRelation:(GraphObj *)graph {
     [self.relations addObject:graph.link];
+    [graph.parents addObject:self.link];
 }
 
 @end
